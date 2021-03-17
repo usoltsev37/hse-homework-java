@@ -1,0 +1,10 @@
+ru/hse/java/streams/Artist.java
+ ru.hse.java.streams.Artist
+ru/hse/java/streams/Album.java
+ ru.hse.java.streams.Album
+ru/hse/java/streams/FirstPartTasks.java
+ ru.hse.java.streams.FirstPartTasks
+ru/hse/java/streams/Track.java
+ ru.hse.java.streams.Track
+ru/hse/java/streams/SecondPartTasks.java
+ ru.hse.java.streams.SecondPartTasks

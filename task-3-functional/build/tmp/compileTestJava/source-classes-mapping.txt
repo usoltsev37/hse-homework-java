@@ -1,0 +1,4 @@
+ru/hse/java/streams/FirstPartTasksTest.java
+ ru.hse.java.streams.FirstPartTasksTest
+ru/hse/java/streams/SecondPartTasksTest.java
+ ru.hse.java.streams.SecondPartTasksTest
