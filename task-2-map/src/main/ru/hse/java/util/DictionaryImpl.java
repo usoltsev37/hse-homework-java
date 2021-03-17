@@ -8,18 +8,44 @@ import java.util.*;
 import static java.lang.Math.sqrt;
 
 public class DictionaryImpl<K, V> extends AbstractMap<K, V> implements Dictionary<K, V> {
-    private ArrayList<ArrayList<Entry<K, V>>> hashTable;
+    private List<LinkedList<Entry<K, V>>> hashTable;
 
     private int size;
     private int capacity;
     private int hashPrimeCapacity;
 
-    private final double LOAD_FACTOR = 0.75;
+    private final double LOAD_FACTOR;
     private final int REHASH_SIZE = 2;
     private final int MIN_CAPACITY = 4;
 
     public DictionaryImpl() {
-        clear();
+        LOAD_FACTOR = 0.75;
+        capacity = MIN_CAPACITY;
+        hashPrimeCapacity = 3;
+        hashTable = new ArrayList<>(capacity);
+        for (int i = 0; i < capacity; i++) {
+            hashTable.add(new LinkedList<>());
+        }
+    }
+
+    public DictionaryImpl(int initialCapacity) {
+        capacity = initialCapacity;
+        hashPrimeCapacity = getNearestLowerPrime(initialCapacity);
+        LOAD_FACTOR = 0.75;
+        hashTable = new ArrayList<>(capacity);
+        for (int i = 0; i < capacity; i++) {
+            hashTable.add(new LinkedList<>());
+        }
+    }
+
+    public DictionaryImpl(int initialCapacity, float loadFactor) {
+        capacity = initialCapacity;
+        hashPrimeCapacity = getNearestLowerPrime(initialCapacity);
+        LOAD_FACTOR = loadFactor;
+        hashTable = new ArrayList<>(capacity);
+        for (int i = 0; i < capacity; i++) {
+            hashTable.add(new LinkedList<>());
+        }
     }
 
     private int getBucket(int hashCode) {
@@ -27,11 +53,16 @@ public class DictionaryImpl<K, V> extends AbstractMap<K, V> implements Dictionar
     }
 
     private boolean isPrime(int x) {
-        if (x == 1) return false;
-        if (x == 2 || x == 3) return true;
+        if (x == 1) {
+            return false;
+        }
+        if (x == 2 || x == 3) {
+            return true;
+        }
         for (int d = 2; d < sqrt(x) + 1; d++) {
-            if (x % d == 0)
+            if (x % d == 0) {
                 return false;
+            }
         }
         return true;
     }
@@ -80,10 +111,10 @@ public class DictionaryImpl<K, V> extends AbstractMap<K, V> implements Dictionar
             throw new IllegalArgumentException("Capacity should be >= MIN_CAPACITY");
         }
         this.capacity = capacity;
-        this.hashPrimeCapacity = getNearestLowerPrime(capacity);
-        ArrayList<ArrayList<Entry<K, V>>> newHashTable = new ArrayList<>(capacity);
+        hashPrimeCapacity = getNearestLowerPrime(capacity);
+        List<LinkedList<Entry<K, V>>> newHashTable = new ArrayList<>(capacity);
         for (int i = 0; i < capacity; i++) {
-            newHashTable.add(new ArrayList<>());
+            newHashTable.add(new LinkedList<>());
         }
 
         for (var bucket : hashTable) {
@@ -152,22 +183,21 @@ public class DictionaryImpl<K, V> extends AbstractMap<K, V> implements Dictionar
         if (hashTable != null) hashTable.clear();
         hashTable = new ArrayList<>(capacity);
         for (int i = 0; i < capacity; i++) {
-            hashTable.add(new ArrayList<>());
+            hashTable.add(new LinkedList<>());
         }
-
     }
 
-    enum iteratorType {
+    private enum IteratorType {
         KEY, VALUE, ENTRY
     }
 
     private class MyIterator<I> implements Iterator<I> {
 
-        private final Iterator<ArrayList<Entry<K, V>>> itTable;
+        private final Iterator<LinkedList<Entry<K, V>>> itTable;
         private Iterator<Entry<K, V>> itCurr;
-        private final iteratorType type;
+        private final IteratorType type;
 
-        MyIterator(iteratorType type, Iterator<ArrayList<Entry<K, V>>> itTable) {
+        private MyIterator(IteratorType type, Iterator<LinkedList<Entry<K, V>>> itTable) {
             this.type = type;
             this.itTable = itTable;
             if (itTable.hasNext()) {
@@ -197,11 +227,11 @@ public class DictionaryImpl<K, V> extends AbstractMap<K, V> implements Dictionar
             if (!hasNext()) {
                 return null;
             }
-            if (type == iteratorType.KEY) {
+            if (type == IteratorType.KEY) {
                 return (I) itCurr.next().getKey();
-            } else if (type == iteratorType.VALUE) {
+            } else if (type == IteratorType.VALUE) {
                 return (I) itCurr.next().getValue();
-            } else if (type == iteratorType.ENTRY) {
+            } else if (type == IteratorType.ENTRY) {
                 return (I) itCurr.next();
             }
             return null;
@@ -218,7 +248,7 @@ public class DictionaryImpl<K, V> extends AbstractMap<K, V> implements Dictionar
 
         @Override
         public @NotNull Iterator<K> iterator() {
-            return new MyIterator<K>(iteratorType.KEY, hashTable.iterator());
+            return new MyIterator<K>(IteratorType.KEY, hashTable.iterator());
         }
 
         @Override
@@ -236,7 +266,7 @@ public class DictionaryImpl<K, V> extends AbstractMap<K, V> implements Dictionar
 
         @Override
         public @NotNull Iterator<V> iterator() {
-            return new MyIterator<V>(iteratorType.VALUE, hashTable.iterator());
+            return new MyIterator<>(IteratorType.VALUE, hashTable.iterator());
         }
 
         @Override
@@ -254,7 +284,7 @@ public class DictionaryImpl<K, V> extends AbstractMap<K, V> implements Dictionar
 
         @Override
         public @NotNull Iterator<Entry<K, V>> iterator() {
-            return new MyIterator<Entry<K, V>>(iteratorType.ENTRY, hashTable.iterator());
+            return new MyIterator<>(IteratorType.ENTRY, hashTable.iterator());
         }
 
         @Override

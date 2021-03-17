@@ -8,7 +8,7 @@ import java.util.*;
 
 public class DictionaryImplTest {
 
-    Dictionary<Integer, String> hashMap;
+    private Dictionary<Integer, String> hashMap;
 
     @BeforeEach
     void startTest() {
@@ -293,8 +293,8 @@ public class DictionaryImplTest {
             int key = rand.nextInt(cntStress);
             Assertions.assertEquals(correctMap.put(key, value), hashMap.put(key, value));
             if (cnt % 1000 == 0) {
-                Object[] expected = correctMap.values().toArray();
-                Object[] myCollec = hashMap.values().toArray();
+                String[] expected = correctMap.values().toArray(new String[0]);
+                String[] myCollec = hashMap.values().toArray(new String[0]);
                 Arrays.sort(expected);
                 Arrays.sort(myCollec);
                 Assertions.assertTrue(Arrays.equals(expected, myCollec));
