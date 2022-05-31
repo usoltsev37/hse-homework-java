@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.hse.java.threadpool.ThreadPoolTest" tests="26" skipped="0" failures="0" errors="0" timestamp="2021-06-03T23:53:34" hostname="TheBest.local" time="6.085">
+  <properties/>
+  <testcase name="testWait()" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.537"/>
+  <testcase name="testSomeTasks()" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.005"/>
+  <testcase name="testShutdown()" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.007"/>
+  <testcase name="testThenApply()" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.004"/>
+  <testcase name="repetition 1 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.514"/>
+  <testcase name="repetition 2 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.508"/>
+  <testcase name="repetition 3 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.511"/>
+  <testcase name="repetition 4 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.509"/>
+  <testcase name="repetition 5 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.508"/>
+  <testcase name="repetition 6 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.512"/>
+  <testcase name="repetition 7 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.514"/>
+  <testcase name="repetition 8 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.509"/>
+  <testcase name="repetition 9 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.512"/>
+  <testcase name="repetition 10 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.524"/>
+  <testcase name="chained()" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.008"/>
+  <testcase name="repetition 1 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.067"/>
+  <testcase name="repetition 2 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.045"/>
+  <testcase name="repetition 3 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.047"/>
+  <testcase name="repetition 4 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.033"/>
+  <testcase name="repetition 5 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.03"/>
+  <testcase name="repetition 6 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.029"/>
+  <testcase name="repetition 7 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.017"/>
+  <testcase name="repetition 8 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.014"/>
+  <testcase name="repetition 9 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.022"/>
+  <testcase name="repetition 10 of 10" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.025"/>
+  <testcase name="testTasksThrowsException()" classname="ru.hse.java.threadpool.ThreadPoolTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
